@@ -1,0 +1,5 @@
+/.env
+/vendor/
+/.serverless/
+/.idea/
+/composer.lock

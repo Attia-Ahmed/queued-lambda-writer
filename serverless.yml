@@ -1,0 +1,43 @@
+service: app
+
+provider:
+    name: aws
+    region: eu-central-1
+    runtime: provided.al2
+
+plugins:
+  - ./vendor/bref/bref
+  - serverless-lift
+
+constructs:
+  my-telescope3:
+    type: queue
+    delay: 0
+    maxBatchingWindow: 60
+    batchSize: 10
+    maximumBatchingWindow: 60
+    worker:
+      handler: index.php
+      memorySize: 128
+      timeout: 5
+      description: ''
+      reservedConcurrency: 1
+      maximumEventAge: 7200
+      maximumRetryAttempts: 2
+      layers:
+        - ${bref:layer.php-81}
+
+#functions:
+#    telescope-bref-test3:
+#
+#        events:
+#            - sqs:
+#                  arn: ${construct:my-telescope.queueArn}
+#                  batchSize: 10
+#                  maximumBatchingWindow: 60
+#                  functionResponseType: ReportBatchItemFailures
+
+# Exclude files from deployment
+package:
+    patterns:
+        - '!tests/**'
