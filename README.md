@@ -1,2 +1,2 @@
 ﻿# queued-lambda-writer
-practical example of using [serverless](https://www.serverless.com/) & [laravel bref](https://bref.sh/)
+practical example of using [Serverless](https://www.serverless.com/) & [Bref](https://bref.sh/)
